@@ -293,7 +293,7 @@ console.log(type.show);
 
 ```
 
-##### renderHtml
+#### renderHtml
 
 you can use renderHtml function to get a html string about the detailed description of the type from type.show.
 
@@ -305,7 +305,7 @@ renderHtml(type.show);
 ```
 
 
-##### getHtml
+#### getHtml
 
 you can also use getHtml function to get a ".html" file about the detailed description of the type from type.show.
 
@@ -324,9 +324,10 @@ getHtml(type.show, './test.html');
 ```
 =>
 
-<iframe
-    src="https://github.com/ZhangDianPeng/type-checker/blob/master/test.html"
-</iframe>
+![detailed document](https://note.youdao.com/yws/public/resource/b5b804bbd5c92a8bd7c436ccb2ad1e04/xmlnote/B32C6E22960F4F10821116808BDEA7C8/22582)
+
+
+
 
 
 
