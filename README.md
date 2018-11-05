@@ -15,11 +15,11 @@ npm install type-checker
 ```javascript
 let {c, t, renderHtml, getHtml} = require('type-checker');
 
-let personType = c.DObj('student information')({
-    age: t.DNum('age of the student'),
-    nick: t.DNum('nick of the student'),
-    favourites: c.DArr('favourites of the student')(t.Str),
-    details: c.DOptional('other information')(t.Any)
+let personType = c.Obj({
+    age: t.Num,
+    nick: t.Num,
+    favourites: c.Arr(t.Str),
+    details: c.Optional(t.Any)
 });
 
 //generate interface documentation
@@ -130,7 +130,7 @@ type({nick: 'Lucy'});
 
 ```
 
-- **c.Arr(type):** the input data must be a Array and every value of the Array must meet the type.
+- **c.Arr(type):** the input data must be an Array and every value of the Array must meet the type.
 
 ```javascript
 
