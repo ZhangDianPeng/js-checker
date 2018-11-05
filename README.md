@@ -4,13 +4,13 @@
 - It can automatically generate interface documentation.
 
 
-#### Installation
+### Installation
 
 ```
 npm install type-checker
 ```
 
-#### Example
+### Example
 
 ```javascript
 let {c, t, renderHtml, getHtml} = require('type-checker');
@@ -50,7 +50,7 @@ personType({
 
 ```
 
-#### API
+### API
 
 
 ```javascript
@@ -58,26 +58,27 @@ let {c, t, renderHtml, getHtml} = require('type-checker');
 ```
 
 
-##### t
+#### t
 
 t defined some basic data types, each data type is a function to check and convert the input data. If the input data meets the defined data type, it will return a converted data, else it will throw a Error with description message.
 
-- t.Null:  the input data is null or undefined
-- t.Any:   the input data is not null and not undefined
-- t.Num:   the input data is a Number or can be converted to a Number
-- t.Str:   the input data is a String or can be converted to a String
-- t.Fn:    the input data is a function
-- t.Json:  the input data is an Array or an Object
-- t.Arr:   the input data is an Array
-- t.Obj:   the input data is an Object
-- t.Bool:  the input data is true/false/"true"/"false"
-- t.Date:  the input data can be converted to a Date by using new Date()
+- **t.Null: ** the input data is null or undefined
 
-##### c
+- **t.Any:**   the input data is not null and not undefined
+- **t.Num:**  the input data is a Number or can be converted to a Number
+- **t.Str:**   the input data is a String or can be converted to a String
+- **t.Fn:**    the input data is a function
+- **t.Json:**  the input data is an Array or an Object
+- **t.Arr:**   the input data is an Array
+- **t.Obj:**   the input data is an Object
+- **t.Bool:**  the input data is true/false/"true"/"false"
+- **t.Date:**  the input data can be converted to a Date by using new Date()
+
+#### c
 
 c defined some combined data type generators，it can generate a new type like "t" from the basic data types and combined data types.
 
-- c.Val(value):  the input data must be equal to the given value.
+- **c.Val(value):**  the input data must be equal to the given value.
 
 ```javascript
 let type = c.Val('hello world');
@@ -89,7 +90,7 @@ type('helloworld')
 ```
 
 
-- c.OrVal(valueArr): the input data must be one of the given values in valueArr.
+- **c.OrVal(valueArr):** the input data must be one of the given values in valueArr.
 
 
 ```javascript
@@ -105,7 +106,7 @@ type('helloworld')
 type('hello-world')
 ```
 
-- c.Obj({key1: type1, key2: type2...}}): the input data must be a Object and the value of each key must meet the type.
+- **c.Obj({key1: type1, key2: type2...}}):** the input data must be a Object and the value of each key must meet the type.
 
 
 ```javascript
@@ -129,7 +130,7 @@ type({nick: 'Lucy'});
 
 ```
 
-- c.Arr(type): the input data must be a Array and every value of the Array must meet the type.
+- **c.Arr(type):** the input data must be a Array and every value of the Array must meet the type.
 
 ```javascript
 
@@ -146,7 +147,7 @@ type([{age: 13, nick: 'Lucy'}, {age: "13x", nick: 'Linlin'}]);
 
 ```
 
-- c.Or(type1, type2...): the input data must meet one of the types(type1, type2...)
+- **c.Or(type1, type2...):** the input data must meet one of the types(type1, type2...)
 
 
 ```javascript
@@ -165,7 +166,7 @@ type({age: 13})
 type('hello')
 ```
 
-- c.Optional(type): the input data is Optional, generally used in c.Obj
+- **c.Optional(type):** the input data is Optional, generally used in c.Obj
 
 
 ```javascript
@@ -180,7 +181,7 @@ type({age: 13})
 
 ```
 
-- c.Default(type, defaultValue): if the input data is undefined, it will give a defaultValue, generally used in c.Obj
+- **c.Default(type, defaultValue):** if the input data is undefined, it will give a defaultValue, generally used in c.Obj
 
 
 ```javascript
@@ -197,7 +198,7 @@ type({age: 13, nick: 'lisi'})
 
 ```
 
-- c.Map(keyType, valueType): if the input data is a Object, the key of the Object must meet the keyType and the value of the Object must meet the valueType.
+- **c.Map(keyType, valueType):** if the input data is a Object, the key of the Object must meet the keyType and the value of the Object must meet the valueType.
 
 ```javascript
 let type = c.Map(t.Str, t.Obj);
@@ -206,7 +207,7 @@ let type = c.Map(t.Str, t.Obj);
 type({'a': 1, 'b': {'c': 2})
 ```
 
-- c.Extend(type1, type2...): the type1, type2... must return a Object, it will return a new c.Obj like Object.assign(type1, type2...)
+- **c.Extend(type1, type2...):** the type1, type2... must return a Object, it will return a new c.Obj like Object.assign(type1, type2...)
 
 
 ```javascript
@@ -237,7 +238,7 @@ type({age: 13, type: 'Worker', workplace: 'hospital'});
 type({age: 13, type: 'Worker', school: 'hangzhou'})
 ```
 
-##### add comment/description for the type
+#### add comment/description for the type
 
 You can add "D" to the beginning of the above defined basic data types and combined data types function name, then you can add the comment for the type definition. The comment can help produce a more detailed documentation description.
 
@@ -253,7 +254,7 @@ let type = c.DObj('student information')({
 
 ```
 
-##### type.show
+#### type.show
 
 Each data type defined above will have a "show" attribute, you can get a more detailed description of the data type and use it generate a data type document description.
 
@@ -323,7 +324,12 @@ getHtml(type.show, './test.html');
 ```
 =>
 
-![detailed document](https://note.youdao.com/yws/public/resource/b5b804bbd5c92a8bd7c436ccb2ad1e04/xmlnote/B32C6E22960F4F10821116808BDEA7C8/22582)
+<iframe
+    src="https://github.com/ZhangDianPeng/type-checker/blob/master/test.html"
+</iframe>
+
+
+
 
 
 
