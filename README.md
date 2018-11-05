@@ -62,7 +62,7 @@ let {c, t, renderHtml, getHtml} = require('type-checker');
 
 t defined some basic data types, each data type is a function to check and convert the input data. If the input data meets the defined data type, it will return a converted data, else it will throw a Error with description message.
 
-- **t.Null: ** the input data is null or undefined
+- **t.Null:** the input data is null or undefined
 
 - **t.Any:**   the input data is not null and not undefined
 - **t.Num:**  the input data is a Number or can be converted to a Number
