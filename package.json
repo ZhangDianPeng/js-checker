@@ -1,0 +1,22 @@
+{
+  "name": "type-checker",
+  "version": "1.0.0",
+  "description": "a type checker for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "type",
+    "checker",
+    "javascript"
+  ],
+  "author": "zhangdianpeng",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "ejs": "^2.6.1"
+  }
+}
