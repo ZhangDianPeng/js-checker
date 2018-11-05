@@ -324,7 +324,7 @@ getHtml(type.show, './test.html');
 ```
 =>
 
-![detailed document](https://note.youdao.com/yws/public/resource/b5b804bbd5c92a8bd7c436ccb2ad1e04/xmlnote/B32C6E22960F4F10821116808BDEA7C8/22582)
+![detailed document](https://github.com/ZhangDianPeng/type-checker/blob/master/image/image.png)
 
 
 
