@@ -7,13 +7,20 @@
 ### Installation
 
 ```
-npm install type-checker
+# install js-checker
+npm install js-checker
+ 
+# run test
+npm run test
+
+# get demo .html file
+npm run html
 ```
 
 ### Example
 
 ```javascript
-let {c, t, renderHtml, getHtml} = require('type-checker');
+let {c, t, renderHtml, getHtml} = require('js-checker');
 
 let personType = c.Obj({
     age: t.Num,
@@ -54,7 +61,7 @@ personType({
 
 
 ```javascript
-let {c, t, renderHtml, getHtml} = require('type-checker');
+let {c, t, renderHtml, getHtml} = require('js-checker');
 ```
 
 
@@ -324,7 +331,7 @@ getHtml(type.show, './test.html');
 ```
 =>
 
-![detailed document](https://github.com/ZhangDianPeng/type-checker/blob/master/image/image.png)
+![detailed document](https://github.com/ZhangDianPeng/js-checker/blob/master/image/image.png)
 
 
 

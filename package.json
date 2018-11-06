@@ -1,15 +1,16 @@
 {
   "name": "js-checker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a type checker for javascript",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "istanbul cover node_modules/mocha/bin/_mocha test.js",
+    "html": "node getHtml.js"
   },
   "repository": {
-     "type": "git",
-     "url": "https://github.com/ZhangDianPeng/js-checker"
-   },
+    "type": "git",
+    "url": "https://github.com/ZhangDianPeng/js-checker"
+  },
   "keywords": [
     "type",
     "checker",
@@ -18,9 +19,11 @@
   "author": "zhangdianpeng",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.6.1",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "ejs": "^2.6.1"
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   }
 }
