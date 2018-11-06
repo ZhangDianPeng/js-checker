@@ -1,6 +1,6 @@
-## type-checker
+## js-checker
 
-- type-checker is a javascript type checker.
+- js-checker is a javascript type checker.
 - It can automatically generate interface documentation.
 
 
