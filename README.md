@@ -245,6 +245,33 @@ type({age: 13, type: 'Worker', workplace: 'hospital'});
 type({age: 13, type: 'Worker', school: 'hangzhou'})
 ```
 
+- **c.Fn({input: [type1, type2...]}, output: type):** Check the input and output of the function
+
+
+
+```javascript
+
+let type = c.Fn({
+    input: [t.Num, t.Str],
+    output: c.Obj({
+        a: t.Num,
+        b: t.Str
+    })
+});
+
+let fn = function(age, nick){
+    return {
+        a: age,
+        b: nick
+    };
+};
+// return {a: 13, b: 'Lucy'}
+type(fn)(12, 'Lucy');
+
+// return an Error("The 0th parameter of the function ==> is not a Num")
+type(fn)('Lucy', 'Lucy');
+```
+
 #### add comment/description for the type
 
 You can add "D" to the beginning of the above defined basic data types and combined data types function name, then you can add the comment for the type definition. The comment can help produce a more detailed documentation description.

@@ -595,6 +595,24 @@ describe('c', function(){
             });
         });
     });
+
+    describe('c.Fn and c.DFn', function(){
+        let wrapType = wrapTest(c, 'Fn');
+        it('Fn', function (){
+            wrapType(oType => {
+                let type = oType({
+                    input: [t.Num, t.Str],
+                    output: c.Val('ok')
+                });
+                console.log('show:', type.show);
+                let fn = type((age, nick) => 'ok');
+                assert(fn(12, 'Lucy'));
+                assert.throwError(fn, ['Lucy', 'Lucy'], 'The 0th parameter of the function ==> is not a Num');
+                let fn1 = type((age, nick) => 'ok1');
+                assert.throwError(fn1, ['12', 'Lucy'], 'the output of the function ==> is not eq to ok');
+            });
+        });
+    });
 });
 
 describe('getHtml and renderHtml', function(){
@@ -618,7 +636,14 @@ describe('getHtml and renderHtml', function(){
             tObj: t.Obj,
             options: c.Optional(c.Arr(t.Num)),
             doptions: c.DOptional('optional')(c.Arr(t.Num)),
-            extend: c.Extend(c.Obj({a: t.Num}))
+            extend: c.Extend(c.Obj({a: t.Num})),
+            cFn: c.DFn('this is a function')({
+                input: [t.Num, t.Str],
+                output: c.Obj({
+                    a: t.Num,
+                    b: t.Str
+                })
+            })
         });
         getHtml(type.show);
         renderHtml(type.show);
