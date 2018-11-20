@@ -87,6 +87,24 @@ describe('t', function(){
                 assert.throwError(type, ['2xx'], 'is not a Num');
             });
         });
+        it('[] test', function (){
+            wrapType(type => {
+                assert.throwError(type, [[]], 'is not a Num');
+            });
+        });
+        it('{} test', function (){
+            wrapType(type => {
+                assert.throwError(type, [{}], 'is not a Num');
+            });
+        });
+        it('empty string test', function (){
+            wrapType(type => {
+                assert.throwError(type, [''], 'is not a Num');
+            });
+            wrapType(type => {
+                assert.throwError(type, ['  '], 'is not a Num');
+            });
+        });
     });
 
     describe('t.Str and t.DStr', function(){

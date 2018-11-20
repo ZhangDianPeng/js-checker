@@ -1,6 +1,6 @@
 {
   "name": "js-checker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a type checker for javascript",
   "main": "index.js",
   "scripts": {
