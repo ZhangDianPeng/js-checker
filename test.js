@@ -622,13 +622,161 @@ describe('c', function(){
                     input: [t.Num, t.Str],
                     output: c.Val('ok')
                 });
-                console.log('show:', type.show);
                 let fn = type((age, nick) => 'ok');
                 assert(fn(12, 'Lucy'));
                 assert.throwError(fn, ['Lucy', 'Lucy'], 'The 0th parameter of the function ==> is not a Num');
                 let fn1 = type((age, nick) => 'ok1');
                 assert.throwError(fn1, ['12', 'Lucy'], 'the output of the function ==> is not eq to ok');
             });
+        });
+    });
+
+    describe('c.Custom', function(){
+        it('Custom1', function (){
+            let type = c.Custom(
+                () => c.Obj({age: t.Num, nick: t.Str})
+            );
+            assert.deepEqual(type({age: 13, nick: 'zhangsan'}), {age: 13, nick: 'zhangsan'});
+        });
+        it('Custom2', function (){
+            let attribute = c.Obj({
+                age: t.Num,
+                nick: t.Str,
+                next: c.Optional(t.Num)
+            }).show.attribute;
+            attribute.next.attribute = attribute;
+
+            let type = c.Custom(
+                () => {
+                    return c.Obj({
+                        age: t.Num,
+                        nick: t.Str,
+                        next: c.Optional(type)
+                    })
+                },
+                {attribute}
+            );
+            // console.dir(type.show, {depth: 10});
+            assert.deepEqual(
+                type({age: 13, nick: 'zhangsan', next: {age: 12, nick: 'lisi'}}),
+                {age: 13, nick: 'zhangsan', next: {age: 12, nick: 'lisi'}}
+            );
+        });
+    });
+
+    describe('c.Num', function(){
+        it('Num', function (){
+            let type = c.Num(1);
+            assert.deepEqual(type(1), 1);
+            type = c.Num(2);
+            assert.deepEqual(type(2), 2);
+            assert.throwError(type, ['lucy'], 'is not eq to 2');
+        });
+    });
+
+    describe('c.Str', function(){
+        it('Str', function (){
+            let type = c.Str(1);
+            assert.deepEqual(type(1), '1');
+            type = c.Str('2');
+            assert.deepEqual(type('2'), '2');
+            assert.throwError(type, ['lucy'], 'is not eq to 2');
+        });
+    });
+
+    describe('c.OrStr', function(){
+        it('OrStr', function (){
+            let type = c.OrStr('1', '2');
+            assert.deepEqual(type(1), '1');
+            assert.deepEqual(type('2'), '2');
+            assert.throwError(type, ['lucy'], 'is not eq to 1\nis not eq to 2');
+        });
+    });
+
+    describe('c.OrNum', function(){
+        it('OrNum', function (){
+            let type = c.OrNum(1, 2);
+            assert.deepEqual(type(1), 1);
+            assert.deepEqual(type('2'), 2);
+            assert.throwError(type, ['lucy'], 'is not eq to 1\nis not eq to 2');
+        });
+    });
+
+    describe('c.TagOr', function(){
+        it('TagOr with two tag', function (){
+            let type = c.TagOr(
+                [
+                    c.Obj({
+                        A: c.Str('a1'),
+                        B: c.Str('b1'),
+                        value: t.Num
+                    }),
+                    c.Obj({
+                        A: c.Str('a2'),
+                        B: c.Str('b2'),
+                        value: t.Num
+                    })
+                ],
+                ['A', 'B']
+            );
+            assert.deepEqual(type({A: 'a1', B: 'b1', value: 1}), {A: 'a1', B: 'b1', value: 1});
+            assert.throwError(type, ['lucy'], 'Tag definition<A,B> does not satisfy: a1-b1/a2-b2');
+            assert.throwError(type, [{A: 'a1', B: 'b1'}], 'value ==> is not a Num');
+        });
+        it('TagOr with one tag', function (){
+            let type = c.TagOr(
+                [
+                    c.Obj({
+                        A: c.Str('a1'),
+                        value: t.Num
+                    }),
+                    c.Obj({
+                        A: c.Str('a2'),
+                        value: t.Num
+                    })
+                ],
+                'A'
+            );
+            assert.deepEqual(type({A: 'a1', value: 1}), {A: 'a1', value: 1});
+            assert.throwError(type, ['lucy'], 'Tag definition<A> does not satisfy: a1/a2');
+            assert.throwError(type, [{A: 'a1', B: 'b1'}], 'value ==> is not a Num');
+        });
+        it('TagOr spec error', function (){
+            assert.throwError(c.TagOr, [[
+                c.Obj({
+                    A: c.Str('a1'),
+                    value: t.Num
+                }),
+                c.Obj({
+                    B: c.Str('a2'),
+                    value: t.Num
+                })
+            ], 'A'], 'these has a type does not satisfy the tag definition:A');
+            assert.throwError(c.TagOr, [[
+                c.Obj({
+                    A: c.Str('a1'),
+                    value: t.Num
+                }),
+                c.Obj({
+                    A: c.Str('a2'),
+                    value: t.Num
+                }),
+                c.Obj({
+                    A: c.Str('a1'),
+                    value: t.Num
+                })
+            ], 'A'], 'Tag<A> repeat defined: a1');
+            assert.throwError(c.TagOr, [[
+                c.Obj({
+                    A: c.Str('a1'),
+                    value: t.Num
+                }),
+                c.Obj({
+                    A: c.Str('a2'),
+                    value: t.Num
+                }),
+                t.Num
+            ], 'A'], 'TagOr does not support Num type');
         });
     });
 });
