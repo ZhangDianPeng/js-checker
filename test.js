@@ -358,7 +358,7 @@ describe('c', function(){
                 assert.deepEqual(type({age: 13, nick: 'Lucy'}), {age: 13, nick: 'Lucy'});
                 assert.deepEqual(type({age: '13', nick: 'Lucy'}), {age: 13, nick: 'Lucy'});
                 assert.deepEqual(type({age: '13', nick: 'Lucy', school: 'hangzhou'}), {age: 13, nick: 'Lucy'});
-                assert.throwError(type, [{age: 13}], 'nick ==> is not a Str');
+                assert.throwError(type, [{age: 13}], 'nick  is not a Str');
                 assert.throwError(type, [null], 'is not an Obj');
             });
         });
@@ -379,7 +379,7 @@ describe('c', function(){
                 assert.throwError(type, [{age: 13}], 'is not an Arr');
                 assert.throwError(type, ['age'], 'is not an Arr');
                 assert.throwError(type, [null], 'is not an Arr');
-                assert.throwError(type, [[{age: 13, nick: 'Lucy'}, {age: '14x', nick: 'Lilin'}]], '[1] ==> age ==> is not a Num');
+                assert.throwError(type, [[{age: 13, nick: 'Lucy'}, {age: '14x', nick: 'Lilin'}]], '[1].age  is not a Num');
             });
         });
     });
@@ -401,7 +401,7 @@ describe('c', function(){
                 let type = oType(oType(c.Obj({a: t.Num})), oType(c.Obj({b: t.Num})));
                 assert.deepEqual(type({a: 1}), {a: 1});
                 assert.deepEqual(type({b: 2}), {b: 2});
-                assert.throwError(type, [{age: 13}], 'a ==> is not a Num\nb ==> is not a Num');
+                assert.throwError(type, [{age: 13}], 'a  is not a Num\nb  is not a Num');
                 assert.throwError(type, ['age'], 'is not an Obj');
                 assert.throwError(type, [null], 'is not an Obj');
             });
@@ -464,7 +464,7 @@ describe('c', function(){
                 assert.throwError(type, [{
                     a: 1,
                     b: 'hello'
-                }], 'the value<hello> of key<b> in Map  ==> is not a Num');
+                }], 'the value<hello> of key<b> in Map   is not a Num');
                 assert.throwError(type, [null], 'is not an Obj');
             });
 
@@ -492,7 +492,7 @@ describe('c', function(){
                 );
                 assert.deepEqual(type({age: 13, type: 'Student', school: 'hangzhou'}), {age: 13, type: 'Student', school: 'hangzhou'});
                 assert.deepEqual(type({age: 13, type: 'Worker', workplace: 'hangzhou'}), {age: 13, type: 'Worker', workplace: 'hangzhou'});
-                assert.throwError(type, [{age: 13, type: 'Worker', school: 'hangzhou'}], 'type ==> is not eq to Student\nworkplace ==> is not a Str');
+                assert.throwError(type, [{age: 13, type: 'Worker', school: 'hangzhou'}], 'type  is not eq to Student\nworkplace  is not a Str');
                 assert.throwError(type, [null], 'is not an Obj');
             });
         });
@@ -532,7 +532,7 @@ describe('c', function(){
                 );
                 assert.deepEqual(type({age: 13, type: 'Student', school: 'hangzhou'}), {age: 13, type: 'Student', school: 'hangzhou'});
                 assert.deepEqual(type({age: 13, type: 'Worker', workplace: 'hangzhou'}), {age: 13, type: 'Worker', workplace: 'hangzhou'});
-                assert.throwError(type, [{age: 13, type: 'Worker', school: 'hangzhou'}], 'type ==> is not eq to Student\nworkplace ==> is not a Str');
+                assert.throwError(type, [{age: 13, type: 'Worker', school: 'hangzhou'}], 'type  is not eq to Student\nworkplace  is not a Str');
                 assert.throwError(type, [null], 'is not an Obj');
             });
         });
@@ -624,9 +624,9 @@ describe('c', function(){
                 });
                 let fn = type((age, nick) => 'ok');
                 assert(fn(12, 'Lucy'));
-                assert.throwError(fn, ['Lucy', 'Lucy'], 'The 0th parameter of the function ==> is not a Num');
+                assert.throwError(fn, ['Lucy', 'Lucy'], 'The 0th parameter of the function  is not a Num');
                 let fn1 = type((age, nick) => 'ok1');
-                assert.throwError(fn1, ['12', 'Lucy'], 'the output of the function ==> is not eq to ok');
+                assert.throwError(fn1, ['12', 'Lucy'], 'the output of the function  is not eq to ok');
             });
         });
     });
@@ -721,7 +721,7 @@ describe('c', function(){
             );
             assert.deepEqual(type({A: 'a1', B: 'b1', value: 1}), {A: 'a1', B: 'b1', value: 1});
             assert.throwError(type, ['lucy'], 'Tag definition<A,B> does not satisfy: a1-b1/a2-b2');
-            assert.throwError(type, [{A: 'a1', B: 'b1'}], 'value ==> is not a Num');
+            assert.throwError(type, [{A: 'a1', B: 'b1'}], 'value  is not a Num');
         });
         it('TagOr with one tag', function (){
             let type = c.TagOr(
@@ -739,7 +739,7 @@ describe('c', function(){
             );
             assert.deepEqual(type({A: 'a1', value: 1}), {A: 'a1', value: 1});
             assert.throwError(type, ['lucy'], 'Tag definition<A> does not satisfy: a1/a2');
-            assert.throwError(type, [{A: 'a1', B: 'b1'}], 'value ==> is not a Num');
+            assert.throwError(type, [{A: 'a1', B: 'b1'}], 'value  is not a Num');
         });
         it('TagOr spec error', function (){
             assert.throwError(c.TagOr, [[
