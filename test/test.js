@@ -4,7 +4,7 @@
 
 let assert = require('assert');
 
-let {c, t, renderHtml, getHtml} = require('./index.js');
+let {c, t, renderHtml, getHtml} = require('../index.js');
 
 assert.throwError = (fn, params, message) => {
     try{

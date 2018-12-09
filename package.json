@@ -4,9 +4,12 @@
   "description": "a type checker for javascript",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover node_modules/mocha/bin/_mocha test.js",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -r intelli-espower-loader ./test/test.js",
     "html": "node getHtml.js"
   },
+  "directories": {
+     "test": "test/"
+   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ZhangDianPeng/js-checker"
@@ -23,7 +26,9 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "power-assert": "^1.6.1"
   }
 }
