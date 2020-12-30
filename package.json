@@ -3,6 +3,7 @@
   "version": "1.0.6",
   "description": "a type checker for javascript",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -r intelli-espower-loader ./test/test.js",
     "html": "node getHtml.js"
