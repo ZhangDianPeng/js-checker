@@ -1,65 +1,123 @@
-declare namespace jsChecker {
-  namespace t {
-    function Null(param:any);
-    function Any (param:any);
-    function Num (param:any);
-    function Str (param:any);
-    function Fn (param:any);
-    function Json (param:any);
-    function Obj (param:any);
-    function Arr (param:any);
-    function Bool (param:any);
-    function Date (param:any);
-    function Time (param:any);
-    function DNull (param:any);
-    function DAny (param:any);
-    function DNum (param:any);
-    function DStr (param:any);
-    function DFn (param:any);
-    function DJson (param:any);
-    function DObj (param:any);
-    function DArr (param:any);
-    function DBool (param:any);
-    function DDate (param:any);
-  }
-
-  namespace c {
-    function Val (param:any);
-    function Or (param:any);
-    function TagOr (param:any);
-    function Optional (param:any);
-    function Default (param:any);
-    function Arr (param:any);
-    function Obj (param:any);
-    function OrVal (param:any);
-    function OrValType (param:any);
-    function ValType (param:any);
-    function Str (param:any);
-    function Num (param:any);
-    function OrStr (param:any);
-    function OrNum (param:any);
-    function ValSet (param:any);
-    function ValConvert (param:any);
-    function ObjConvert (param:any);
-    function Map (param:any);
-    function Custom (param:any);
-    function Fn (param:any);
-    function Extend (param:any);
-    function DVal (param:any);
-    function DOr (param:any);
-    function DOptional (param:any);
-    function DDefault (param:any);
-    function DArr (param:any);
-    function DObj (param:any);
-    function DOrVal (param:any);
-    function DMap (param:any);
-    function DExtend (param:any);
-  }
-
-  function createTree(name:string, data:any) :any;
-  function getHtml(showData:any, htmlPath:string) :string;
-  function renderHtml(showData:any, title:string) :any;
+interface AnyFunction {
+  (...params: any) : any;
 }
 
+interface T {
+   Null: AnyFunction;
+   Any: AnyFunction;
+   Num: AnyFunction;
+   Str: AnyFunction;
+   Fn: AnyFunction;
+   Json: AnyFunction;
+   Obj: AnyFunction;
+   Arr: AnyFunction;
+   Bool: AnyFunction;
+   Date: AnyFunction;
+   Time: AnyFunction;
+   DNull: AnyFunction;
+   DAny: AnyFunction;
+   DNum: AnyFunction;
+   DStr: AnyFunction;
+   DFn: AnyFunction;
+   DJson: AnyFunction;
+   DObj: AnyFunction;
+   DArr: AnyFunction;
+   DBool: AnyFunction;
+   DDate: AnyFunction;
+  [key: string]: AnyFunction;
+};
 
-export = jsChecker
+interface C {
+   Val: AnyFunction;
+   Or: AnyFunction;
+   TagOr: AnyFunction;
+   Optional: AnyFunction;
+   Default: AnyFunction;
+   Arr: AnyFunction;
+   Obj: AnyFunction;
+   OrVal: AnyFunction;
+   OrValType: AnyFunction;
+   ValType: AnyFunction;
+   Str: AnyFunction;
+   Num: AnyFunction;
+   OrStr: AnyFunction;
+   OrNum: AnyFunction;
+   ValSet: AnyFunction;
+   ValConvert: AnyFunction;
+   ObjConvert: AnyFunction;
+   Map: AnyFunction;
+   Custom: AnyFunction;
+   Fn: AnyFunction;
+   Extend: AnyFunction;
+   DVal: AnyFunction;
+   DOr: AnyFunction;
+   DOptional: AnyFunction;
+   DDefault: AnyFunction;
+   DArr: AnyFunction;
+   DObj: AnyFunction;
+   DOrVal: AnyFunction;
+   DMap: AnyFunction;
+   DExtend: AnyFunction;
+ [key: string]: AnyFunction;
+};
+
+declare namespace JsChecker {
+  export let t: T = {
+   Null: AnyFunction,
+   Any: AnyFunction,
+   Num: AnyFunction,
+   Str: AnyFunction,
+   Fn: AnyFunction,
+   Json: AnyFunction,
+   Obj: AnyFunction,
+   Arr: AnyFunction,
+   Bool: AnyFunction,
+   Date: AnyFunction,
+   Time: AnyFunction,
+   DNull: AnyFunction,
+   DAny: AnyFunction,
+   DNum: AnyFunction,
+   DStr: AnyFunction,
+   DFn: AnyFunction,
+   DJson: AnyFunction,
+   DObj: AnyFunction,
+   DArr: AnyFunction,
+   DBool: AnyFunction,
+   DDate: AnyFunction
+ };
+
+ export let c: C = {
+   Val: AnyFunction,
+   Or: AnyFunction,
+   TagOr: AnyFunction,
+   Optional: AnyFunction,
+   Default: AnyFunction,
+   Arr: AnyFunction,
+   Obj: AnyFunction,
+   OrVal: AnyFunction,
+   OrValType: AnyFunction,
+   ValType: AnyFunction,
+   Str: AnyFunction,
+   Num: AnyFunction,
+   OrStr: AnyFunction,
+   OrNum: AnyFunction,
+   ValSet: AnyFunction,
+   ValConvert: AnyFunction,
+   ObjConvert: AnyFunction,
+   Map: AnyFunction,
+   Custom: AnyFunction,
+   Fn: AnyFunction,
+   Extend: AnyFunction,
+   DVal: AnyFunction,
+   DOr: AnyFunction,
+   DOptional: AnyFunction,
+   DDefault: AnyFunction,
+   DArr: AnyFunction,
+   DObj: AnyFunction,
+   DOrVal: AnyFunction,
+   DMap: AnyFunction,
+   DExtend: AnyFunction,
+ }
+}
+
+export = JsChecker;
