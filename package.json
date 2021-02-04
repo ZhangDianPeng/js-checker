@@ -1,6 +1,6 @@
 {
   "name": "js-checker",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "a type checker for javascript",
   "main": "index.js",
   "types": "index.d.ts",
@@ -9,8 +9,8 @@
     "html": "node getHtml.js"
   },
   "directories": {
-     "test": "test/"
-   },
+    "test": "test/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ZhangDianPeng/js-checker"
