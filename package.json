@@ -1,15 +1,16 @@
 {
   "name": "js-checker",
-  "version": "1.0.7",
+  "version": "1.0.12",
   "description": "a type checker for javascript",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -r intelli-espower-loader ./test/test.js",
     "html": "node getHtml.js"
   },
   "directories": {
-     "test": "test/"
-   },
+    "test": "test/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ZhangDianPeng/js-checker"
